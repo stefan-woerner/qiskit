@@ -31,6 +31,7 @@ def main(repos=None, output_path=None):
         'Nikolaj Moll',      # to Aqua
         'Sergey Bravyi',     # to Aqua
         'Tal Kachmann',      # to Aqua
+        'Dmitri Maslov',      # to Circuits and Compilers
     ]
 
     if not repos:
@@ -39,11 +40,8 @@ def main(repos=None, output_path=None):
             'https://github.com/Qiskit/qiskit-aer',
             'https://github.com/Qiskit/qiskit-aqua',
             'https://github.com/Qiskit/qiskit-ignis',
-            'https://github.com/Qiskit/qiskit-jku-provider',
             'https://github.com/Qiskit/qiskit',
             'https://github.com/Qiskit/qiskit-ibmq-provider',
-            'https://github.com/Qiskit/qiskit-aqt-provider',
-            'https://github.com/Qiskit/qiskit-honeywell-provider'
         ]
     if not output_path:
         output_path = 'AUTHORS'
@@ -76,7 +74,10 @@ def main(repos=None, output_path=None):
         co_authors = [signed.split(":", 1)[1].strip() for signed in co_authors if signed]
 
         for author_str in co_authors:
-            author, email = author_str.split('<')
+            try:
+                author, email = author_str.split('<')
+            except ValueError:
+                continue
             author = author.strip()
             email = email[:-1].strip()
             mailmap_contact = '<' + email + '>'

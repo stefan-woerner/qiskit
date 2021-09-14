@@ -185,7 +185,7 @@ Read the commit message to see if it hints at improved code structure.
    and rebase the change to split it up into separate pull requests.
 
 Ensure sufficient information to decide whether to review.
-   When Github sends out email alerts for new pull request submissions, there is
+   When GitHub sends out email alerts for new pull request submissions, there is
    minimal information included - usually just the commit message and the list of
    files changes. Because of the high volume of patches, a commit message must
    contain sufficient information for potential reviewers to find the patch that
@@ -540,11 +540,11 @@ the work invested translating one sentence to translate other, similar
 sentences. Crowdin also makes translations resilient to many types of changes to
 the original material, such as moving sentences around, even across files.
 
-Qiskit localizatioon requests are handled in `Qiskit Translations <https://github.com/Qiskit/qiskit-translations>`__
+Qiskit localization requests are handled in `Qiskit Translations <https://github.com/Qiskit/qiskit-translations>`__
 repository. To contribute to Qiskit localization, please follow these steps:
 
 #. Add your name (or ID) to the `LOCALIZATION_CONTRIBUTORS
-   <https://github.com/Qiskit/qiskit-translations/blob/master/LOCALIZATION_CONTRIBUTORS>`__
+   <https://github.com/qiskit-community/qiskit-translations/blob/master/LOCALIZATION_CONTRIBUTORS>`__
    file.
 #. Create a pull request (PR) to merge your change. Make sure to follow the template
    to open a Pull Request.
@@ -558,6 +558,12 @@ repository. To contribute to Qiskit localization, please follow these steps:
         to the PR**.
 #. You will be asked to sign the Qiskit Contributors License Agreement (CLA);
    please do so.
+#. A minimum of **three contributors** per language are necessary for any new
+   languages to be added, to receive official support from the administrators of
+   the localization project.
+#. Among the group of contributors, a translation lead must be identified to serve
+   as a liaison with the administrators of the localization project.
+   The lead must contact: Yuri Kobayashi (yurik@jp.ibm.com) by email.
 #. In the `Qiskit-Docs <https://crowdin.com/project/qiskit-docs>`__
    Crowdin project, choose the language that you want to contribute to.
 
@@ -567,7 +573,7 @@ repository. To contribute to Qiskit localization, please follow these steps:
       we want to make sure that translated languages have enough community support
       to build a translation team with translators, proofreaders, and translation leads.
       If you want to be a translation lead or would be willing to join a new
-      translation project team, you can open a `Github issue <https://github.com/Qiskit/qiskit-translations/issues/new/choose>`__
+      translation project team, you can open a `GitHub issue <https://github.com/qiskit-community/qiskit-translations/issues/new/choose>`__
       to start a discussion with the Qiskit team and recruit translation project members.
 #. Click the **Join** button and **paste the URL of your PR** in the dialog box where you
    are asked why you want to join the Crowdin project.
@@ -681,36 +687,36 @@ Installing Terra from Source
 ============================
 
 Installing from source requires that you have a C++ compiler on your system that supports
-C++-11.
+C++11.
 
-.. tabs::
 
-   .. tab:: Compiler for Linux
+.. tabbed:: Compiler for Linux
 
-      On most Linux platforms, the necessary GCC compiler is already installed.
+   On most Linux platforms, the necessary GCC compiler is already installed.
 
-   .. tab:: Compiler for macOS
+.. tabbed:: Compiler for macOS
 
-      If you use macOS, you can install the Clang compiler by installing XCode.
-      Check if you have XCode and Clang installed by opening a terminal window and entering the
-      following.
+   If you use macOS, you can install the Clang compiler by installing XCode.
+   Check if you have XCode and Clang installed by opening a terminal window and entering the
+   following.
 
-      .. code:: sh
+   .. code:: sh
 
-            clang --version
+      clang --version
 
-      Install XCode and Clang by using the following command.
+   Install XCode and Clang by using the following command.
 
-      .. code:: sh
+   .. code:: sh
 
-            xcode-select --install
+      xcode-select --install
 
-   .. tab:: Compiler for Windows
+.. tabbed:: Compiler for Windows
 
-      On Windows, it is easiest to install the Visual C++ compiler from the
-      `Build Tools for Visual Studio 2017 <https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017>`__.
-      You can instead install Visual Studio version 2015 or 2017, making sure to select the
-      options for installing the C++ compiler.
+   On Windows, it is easiest to install the Visual C++ compiler from the
+   `Build Tools for Visual Studio 2017 <https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017>`__.
+   You can instead install Visual Studio version 2015 or 2017, making sure to select the
+   options for installing the C++ compiler.
+
 
 Once the compilers are installed, you are ready to install Qiskit Terra.
 
@@ -799,85 +805,83 @@ using. Since Aer is a compiled C++ program with a Python interface, there are
 non-Python dependencies for building the Aer binary which can't be installed
 universally depending on operating system.
 
-.. tabs::
+.. tabbed:: Linux
 
-   .. tab:: Linux
+   3. Install compiler requirements.
 
-      3. Install compiler requirements.
+      Building Aer requires a C++ compiler and development headers.
 
-         Building Aer requires a C++ compiler and development headers.
+      If you're using Fedora or an equivalent Linux distribution,
+      install using:
 
-         If you're using Fedora or an equivalent Linux distribution,
-         install using:
+      .. code:: sh
 
-         .. code:: sh
+         dnf install @development-tools
 
-            dnf install @development-tools
+      For Ubuntu/Debian install it using:
 
-         For Ubuntu/Debian install it using:
+      .. code:: sh
 
-         .. code:: sh
+         apt-get install build-essential
 
-            apt-get install build-essential
+   4. Install OpenBLAS development headers.
 
-      4. Install OpenBLAS development headers.
+      If you're using Fedora or an equivalent Linux distribution,
+      install using:
 
-         If you're using Fedora or an equivalent Linux distribution,
-         install using:
+      .. code:: sh
 
-         .. code:: sh
+         dnf install openblas-devel
 
-            dnf install openblas-devel
+      For Ubuntu/Debian install it using:
 
-         For Ubuntu/Debian install it using:
+      .. code:: sh
 
-         .. code:: sh
-
-            apt-get install libopenblas-dev
+         apt-get install libopenblas-dev
 
 
-   .. tab:: macOS
+.. tabbed:: macOS
 
-      3. Install dependencies.
+   3. Install dependencies.
 
-         To use the `Clang <https://clang.llvm.org/>`__ compiler on macOS, you need to install
-         an extra library for supporting `OpenMP <https://www.openmp.org/>`__.  You can use `brew <https://brew.sh/>`__
-         to install this and other dependencies.
+      To use the `Clang <https://clang.llvm.org/>`__ compiler on macOS, you need to install
+      an extra library for supporting `OpenMP <https://www.openmp.org/>`__.  You can use `brew <https://brew.sh/>`__
+      to install this and other dependencies.
 
-         .. code:: sh
+      .. code:: sh
 
-            brew install libomp
+         brew install libomp
 
-      4. Then install a BLAS implementation; `OpenBLAS <https://www.openblas.net/>`__
-         is the default choice.
+   4. Then install a BLAS implementation; `OpenBLAS <https://www.openblas.net/>`__
+      is the default choice.
 
-         .. code:: sh
+      .. code:: sh
 
-            brew install openblas
+         brew install openblas
 
-         Next, install ``Xcode Command Line Tools``.
+      Next, install ``Xcode Command Line Tools``.
 
-         .. code:: sh
+      .. code:: sh
 
-            xcode-select --install
+         xcode-select --install
 
-   .. tab:: Windows
+.. tabbed:: Windows
 
-      On Windows you need to use `Anaconda3 <https://www.anaconda.com/distribution/#windows>`__
-      or `Miniconda3 <https://docs.conda.io/en/latest/miniconda.html>`__ to install all the
-      dependencies.
+   On Windows you need to use `Anaconda3 <https://www.anaconda.com/distribution/#windows>`__
+   or `Miniconda3 <https://docs.conda.io/en/latest/miniconda.html>`__ to install all the
+   dependencies.
 
-      3. Install compiler requirements.
+   3. Install compiler requirements.
 
-         .. code:: sh
+      .. code:: sh
 
-            conda install --update-deps vs2017_win-64 vs2017_win-32 msvc_runtime
+         conda install --update-deps vs2017_win-64 vs2017_win-32 msvc_runtime
 
-      4. Install binary and build dependencies.
+   4. Install binary and build dependencies.
 
-         .. code:: sh
+      .. code:: sh
 
-            conda install --update-deps -c conda-forge -y openblas cmake
+         conda install --update-deps -c conda-forge -y openblas cmake
 
 
 5. Build and install qiskit-aer directly
@@ -979,7 +983,7 @@ A list of common options depending on platform are:
 +--------+------------+----------------------+---------------------------------------------+
 | Linux  | CMake      | -DCMAKE_CXX_COMPILER | Used to specify a specific C++ compiler;    |
 |        |            |                      | this is often needed if your default g++ is |
-|        |            |                      | too.                                        |
+|        |            |                      | too old.                                    |
 +--------+------------+----------------------+---------------------------------------------+
 | OSX    | setuptools | --plat-name          | Used to specify the platform name in the    |
 |        |            |                      | output Python package.                      |
@@ -1106,3 +1110,127 @@ project don't require a reinstall to be applied:
 .. code:: sh
 
     pip install -e .
+
+.. _versioning_strategy:
+
+*****************
+Qiskit Versioning
+*****************
+
+The Qiskit project is made up of several elements each performing different
+functionality. Each is independently useful and can be used on their own,
+but for convenience we provide this repository and meta-package to provide
+a single entrypoint to install all the elements at once. This is to simplify
+the install process and provide a unified interface to end users. However,
+because each Qiskit element has it's own releases and versions some care is
+needed when dealing with versions between the different repositories. This
+document outlines the guidelines for dealing with versions and releases of
+both Qiskit elements and the meta-package.
+
+For the rest of this guide the standard Semantic Versioning nomenclature will
+be used of: ``Major.Minor.Patch`` to refer to the different components of a
+version number. For example, if the version number was ``0.7.1``, then the major
+version is ``0``, the minor version ``7``, and the patch version ``1``.
+
+
+Meta-package Version
+====================
+
+The Qiskit meta-package version is an independent value that is determined by
+the releases of each of the elements being tracked. Each time we push a release
+to a tracked component (or add an element) the meta-package requirements, and
+version will need to be updated and a new release published. The timing should
+be coordinated with the release of elements to ensure that the meta-package
+releases track with element releases.
+
+Adding New Tracked Elements
+---------------------------
+
+When a new Qiskit element is being added to the meta-package requirements, we
+need to increase the **Minor** version of the meta-package.
+
+For example, if the meta-package is tracking 2 elements ``qiskit-aer`` and
+``qiskit-terra`` and it's version is ``0.7.4``. Then we release a new element
+``qiskit-ignis`` that we intend to also have included in the meta-package. When
+we add the new element to the meta-package we increase the version to
+``0.8.0``.
+
+
+Patch Version Increases
+-----------------------
+
+When any Qiskit element that is being already tracked by the meta-package
+releases a patch version to fix bugs in a release we need also bump the
+requirement in the setup.py and then increase the patch version of the
+meta-package.
+
+For example, if the meta-package is tracking 3 elements ``qiskit-terra==0.8.1``,
+``qiskit-aer==0.2.1``, and ``qiskit-ignis==0.1.4`` with the current version
+``0.9.6``. When qiskit-terra release a new patch version to fix a bug ``0.8.2``
+the meta-package will also need to increase it's patch version and release,
+becoming ``0.9.7``.
+
+Additionally, there are occasionally packaging or other bugs in the
+meta-package itself that need to be fixed by pushing new releases. When those
+are encountered we should increase the patch version to differentiate it from
+the broken release. Do **not** delete the broken or any old releases from pypi
+in any situation, instead just increase the patch version and upload a new
+release.
+
+Minor Version Increases
+-----------------------
+
+Besides adding a new element to the meta-package the minor version of the
+meta-package should also be increased anytime a minor version is increased in
+a tracked element.
+
+For example, if the meta-package is tracking 2 elements ``qiskit-terra==0.7.0``
+and ``qiskit-aer==0.1.1`` and the current version is ``0.7.5``. When the
+``qiskit-aer`` element releases ``0.2.0`` then we need to increase the
+meta-package version to be ``0.8.0`` to correspond to the new release.
+
+Major Version Increases
+-----------------------
+
+The major version is different from the other version number components. Unlike
+the other version number components, which are updated in lock step with each
+tracked element, the major version is only increased when all tracked versions
+are bumped (at least before ``1.0.0``). Right now all the elements still have
+a major version number component of ``0`` and until each tracked element in the
+meta-repository is marked as stable by bumping the major version to be ``>=1``
+then the meta-package version should not increase the major version.
+
+The behavior of the major version number component tracking after when all the
+elements are at >=1.0.0 has not been decided yet.
+
+Optional Extras
+---------------
+
+In addition to the tracked elements there are additional packages built
+on top of Qiskit which are developed in tandem with Qiskit for example the
+application repositories like qiskit-optimization. For convienence
+these packages are tracked by the Qiskit metapackage as optional extras that
+can be installed with Qiskit. Releases of these optional downstream projects
+do not trigger a metapackage release as they are unpinned and do not effect the
+metapackage version. If there is a compatibility issue between Qiskit and these
+downstream optional dependencies and the minimum version needs to be adjusted
+in a standalone release this will only be done as a patch version release as
+it's a packaging bugfix.
+
+Qiskit Element Requirement Tracking
+===================================
+
+While not strictly related to the meta-package and Qiskit versioning how we
+track the element versions in the meta-package's requirements list is
+important. Each element listed in the setup.py should be pinned to a single
+version. This means that each version of Qiskit should only install a single
+version for each tracked element. For example, the requirements list at any
+given point should look something like::
+
+  requirements = [
+      "qiskit_terra==0.7.0",
+      "qiskit-aer==0.1.1",
+  ]
+
+This is to aid in debugging, but also make tracking the versions across
+multiple elements more transparent.

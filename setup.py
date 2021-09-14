@@ -22,24 +22,61 @@ README_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)),
 with open(README_PATH) as readme_file:
     README = readme_file.read()
 
-
+# NOTE: The lists below require each requirement on a separate line,
+# putting multiple requirements on the same line will prevent qiskit-bot
+# from correctly updating the versions for the qiskit packages.
 requirements = [
-    "qiskit-terra==0.12.0",
-    "qiskit-aer==0.4.1",
-    "qiskit-ibmq-provider==0.5.0",
-    "qiskit-ignis==0.2.0",
-    "qiskit-aqua==0.6.5",
+    "qiskit-terra==0.18.2",
+    "qiskit-aer==0.8.2",
+    "qiskit-ibmq-provider==0.16.0",
+    "qiskit-ignis==0.6.0",
+    "qiskit-aqua==0.9.5",
 ]
+
+
+optimization_extra = [
+    "qiskit-optimization>=0.2.2",
+]
+
+
+finance_extra = [
+    "qiskit-finance>=0.2.1",
+]
+
+
+machine_learning_extra = [
+    "qiskit-machine-learning>=0.2.1",
+]
+
+
+nature_extra = [
+    "qiskit-nature>=0.2.0",
+]
+
+experiments_extra = [
+    "qiskit-experiments",
+]
+
+visualization_extra = [
+    'matplotlib>=2.1',
+    'ipywidgets>=7.3.0',
+    'pydot',
+    "pillow>=4.2.1",
+    "pylatexenc>=1.4",
+    "seaborn>=0.9.0",
+    "pygments>=2.4"
+]
+
 
 setup(
     name="qiskit",
-    version="0.16.2",
+    version="0.29.1",
     description="Software for developing quantum computing programs",
     long_description=README,
     long_description_content_type='text/markdown',
     url="https://github.com/Qiskit/qiskit",
     author="Qiskit Development Team",
-    author_email="qiskit@us.ibm.com",
+    author_email="hello@qiskit.org",
     license="Apache 2.0",
     classifiers=[
         "Environment :: Console",
@@ -49,10 +86,10 @@ setup(
         "Operating System :: Microsoft :: Windows",
         "Operating System :: MacOS",
         "Operating System :: POSIX :: Linux",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Topic :: Scientific/Engineering",
     ],
     keywords="qiskit sdk quantum",
@@ -63,5 +100,16 @@ setup(
         "Source Code": "https://github.com/Qiskit/qiskit",
     },
     include_package_data=True,
-    python_requires=">=3.5",
+    python_requires=">=3.6",
+    extras_require={
+        'visualization': visualization_extra,
+        'all': optimization_extra
+        + finance_extra + machine_learning_extra
+        + nature_extra + experiments_extra + visualization_extra,
+        'experiments': experiments_extra,
+        'optimization': optimization_extra,
+        'finance': finance_extra,
+        'machine-learning': machine_learning_extra,
+        'nature': nature_extra,
+    }
 )

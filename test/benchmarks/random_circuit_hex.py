@@ -17,15 +17,9 @@
 
 import copy
 
-try:
-    from qiskit.quantum_info.synthesis import euler_angles_1q
-except ImportError:
-    try:
-        from qiskit.mapper.compiling import euler_angles_1q
-    except ImportError:
-        from qiskit.mapper._compiling import euler_angles_1q
+from qiskit.quantum_info.synthesis import OneQubitEulerDecomposer
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
-from qiskit import BasicAer
+
 try:
     from qiskit.compiler import transpile
     TRANSPILER_SEED_KEYWORD = 'seed_transpiler'
@@ -50,6 +44,7 @@ def make_circuit_ring(nq, depth, seed):
     # Create a Quantum Circuit
     qc = QuantumCircuit(q, c)
     offset = 1
+    decomposer = OneQubitEulerDecomposer()
     # initial round of random single-qubit unitaries
     for i in range(nq):
         qc.h(q[i])
@@ -63,7 +58,7 @@ def make_circuit_ring(nq, depth, seed):
             else:
                 u = random_unitary_matrix(2)
 
-            angles = euler_angles_1q(u)
+            angles = decomposer.angles(u)
             qc.u3(angles[0], angles[1], angles[2], q[i])
 
     # insert the final measurements
@@ -82,15 +77,6 @@ class BenchRandomCircuitHex:
         depth = 2 * n
         self.seed = 0
         self.circuit = make_circuit_ring(n, depth, self.seed)[0]
-        self.sim_backend = BasicAer.get_backend('qasm_simulator')
-
-    def time_simulator_transpile(self, _):
-        transpile(self.circuit, self.sim_backend,
-                  **{TRANSPILER_SEED_KEYWORD: self.seed})
-
-    def track_depth_simulator_transpile(self, _):
-        return transpile(self.circuit, self.sim_backend,
-                         **{TRANSPILER_SEED_KEYWORD: self.seed}).depth()
 
     def time_ibmq_backend_transpile(self, _):
         # Run with ibmq_16_melbourne configuration
