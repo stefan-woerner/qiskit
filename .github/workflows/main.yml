@@ -10,56 +10,56 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version: [3.8, 3.9, "3.10", "3.11"]
         os: ["ubuntu-latest"]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install Deps
-        run: python -m pip install -U tox setuptools virtualenv wheel
+        run: python -m pip install -U 'tox<4' setuptools virtualenv wheel pip
       - name: Install and Run Tests
         run: tox -e py
   lint:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: Install Deps
-        run: python -m pip install -U tox
+        run: python -m pip install -U 'tox<4'
       - name: Run lint
         run: tox -elint
   docs:
     name: docs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: Install ubuntu Deps
         run: sudo apt-get install -y pandoc graphviz
       - name: Install python Deps
         run: |
-          python -m pip install -U tox
+          python -m pip install -U 'tox<4'
           python -m pip install -r requirements-dev.txt
       - name: Build Docs
-        run: tox -edocs -- -j auto
+        run: tox -edocs
       - name: Compress Artifacts
         run: |
           mkdir artifacts
           tar -zcvf html_docs.tar.gz docs/_build/html
           mv html_docs.tar.gz artifacts/.
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: html_docs
           path: artifacts
@@ -67,20 +67,20 @@ jobs:
     name: tutorials
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: Install python Deps
-        run: python -m pip install -U tox
+        run: python -m pip install -U 'tox<4'
       - name: Setup tutorials
         run: |
           set -e
           git clone https://github.com/Qiskit/qiskit-tutorials
-          pip install -c constraints.txt -U jupyter sphinx nbsphinx networkx sphinx_rtd_theme 'matplotlib<3.3.0' qiskit-terra[visualization] cvxpy 'pyscf<1.7.4'
+          pip install -c constraints.txt -U jupyter sphinx nbsphinx networkx qiskit_sphinx_theme 'matplotlib>=3.3.0' qiskit-terra[visualization] cvxpy 'pyscf<1.7.4' scikit-learn qiskit-aer
           pip install -c constraints.txt -U .
           sudo apt-get install -y pandoc graphviz
       - name: Run tutorials
@@ -95,7 +95,7 @@ jobs:
           mkdir artifacts
           tar -zcvf tutorial_docs.tar.gz qiskit-tutorials/_build/html
           mv tutorial_docs.tar.gz artifacts/.
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: tutorial_docs
           path: artifacts

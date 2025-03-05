@@ -1,113 +1,81 @@
-.. figure:: images/qiskit_circ.png
-  :align: center
-
 ##############################
 Qiskit |version| documentation
 ##############################
 
 Qiskit is open-source software for working with quantum computers
-at the level of circuits, pulses, and algorithms.  Additionally, several
-domain specific application API's exist on top of this core module.
+at the level of circuits, pulses, and algorithms.
 
 The central goal of Qiskit is to build a software stack
 that makes it easy for anyone to use quantum computers, regardless of their skill level or
 area of interest; Qiskit allows one to easily design experiments and applications and run
-them on real quantum computers and/or classical simulators.  Qiskit is already in use
+them on real quantum computers or classical simulators. Qiskit is already in use
 around the world by beginners, hobbyists, educators, researchers, and commercial companies.
 
-.. raw:: html
 
-  <div class="tutorials-callout-container">
-     <div class="row">
+.. qiskit-call-to-action-grid::
 
-.. customcalloutitem::
-  :description: A quick introduction to quantum computing.
-  :header: What is quantum computing?
-  :button_link:  qc_intro.html
-  :button_text: Get cracking
+    .. qiskit-call-to-action-item::
+      :header: Access to quantum systems
+      :description: Find out which Qiskit providers support execution on real quantum services.
+      :button_link:  https://qiskit.org/providers
+      :button_text: Quantum providers
 
-
-.. customcalloutitem::
-  :description: Find out which Qiskit Partners support execution on real quantum services.
-  :header: Access to quantum systems
-  :button_link:  https://qiskit.org/documentation/partners/
-  :button_text: Qiskit Partners
-
-.. raw:: html
-
-  </div>
+    .. qiskit-call-to-action-item::
+      :header: Qiskit ecosystem
+      :description: The Qiskit ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
+      :button_link:  https://qiskit.org/ecosystem/
+      :button_text: Explore the Qiskit ecosystem
 
 
-Interested in quantum hardware design?
-######################################
+Main Qiskit-related projects
+############################
 
-   .. panels::
+.. qiskit-call-to-action-grid::
 
-    Qiskit Metal
-    ^^^^^^^^^^^^^^
+    .. qiskit-call-to-action-item::
+      :header: Qiskit Experiments
+      :description: Run characterization, calibration, and verification experiments
+      :button_link: https://qiskit.org/ecosystem/experiments/
+      :button_text: Qiskit Experiments documentation
 
-    .. image:: images/metal.png
-      :scale: 35 %
-      :align: center
-      :target: https://qiskit.org/documentation/metal/
+    .. qiskit-call-to-action-item::
+      :header: Qiskit Dynamics
+      :description: Tools for building and solving models of quantum systems in Qiskit
+      :button_link: https://qiskit.org/ecosystem/dynamics/
+      :button_text: Qiskit Dynamics documentation
 
-    ++++++
-    :link-badge:`https://qiskit.org/metal,"Website",cls=badge-dark text-white`
-    :link-badge:`https://qiskit.org/documentation/metal/,"Documentation",cls=badge-primary text-white`
+    .. qiskit-call-to-action-item::
+      :header: Qiskit IBM Runtime
+      :description: Qiskit Runtime is a cloud base implementation of the Qiskit primitives to effectively execute workloads on IBM Quantum systems.
+      :button_link:  https://qiskit.org/ecosystem/ibm-runtime/
+      :button_text: Qiskit Runtime documentation
 
+    .. qiskit-call-to-action-item::
+      :header: IBM Quantum Provider
+      :description: A Qiskit provider that allows accessing the IBM Quantum systems and cloud simulators.
+      :button_link:  https://qiskit.org/ecosystem/ibm-runtime/
+      :button_text: Qiskit IBM provider documentation
 
-
-.. toctree::
-  :maxdepth: 1
-  :hidden:
-
-  Documentation homepage <self>
 
 .. toctree::
-  :caption: Frontmatter
-  :maxdepth: 2
-  :hidden:
+   :hidden:
 
-  qc_intro
-  intro_tutorial1
-  release_notes
-  contributing_to_qiskit
-  configuration
-  faq
-
-.. toctree::
-  :maxdepth: 1
-  :caption: Libraries
-  :hidden:
-
-  Circuit Library <apidoc/circuit_library>
+   Documentation Home <self>
+   qc_intro
+   getting_started
+   intro_tutorial1
+   tutorials
+   API Reference <apidoc/terra>
+   Migration Guides <migration_guides/index>
+   release_notes
+   configuration
+   GitHub <https://github.com/Qiskit/qiskit-terra>
+   faq
 
 .. toctree::
-  :maxdepth: 1
-  :caption: API References
-  :hidden:
+   :caption: Contributing
+   :hidden:
 
-  Qiskit (Terra) <apidoc/terra>
-  Qiskit Simulator (Aer) <apidoc/aer>
-  Qiskit Experiments (Ignis) <apidoc/ignis>
-  Qiskit Application Modules (Aqua) <apidoc/aqua>
-  Qiskit IBM Quantum (Provider) <apidoc/ibmq-provider>
-
-.. toctree::
-  :maxdepth: 1
-  :caption: Qiskit Applications (Aqua) Migration Guide
-  :hidden:
-
-  Qiskit Applications (Aqua) Migration Guide <aqua_migration>
-
-.. toctree::
-  :maxdepth: 1
-  :caption: Troubleshooting
-  :hidden:
-
-  IBM Quantum API error codes <https://quantum-computing.ibm.com/lab/docs/iql/manage/errors>
-
-.. Hiding - Indices and tables
-   :ref:`genindex`
-   :ref:`modindex`
-   :ref:`search`
+   contributing_to_qiskit
+   deprecation_policy
+   maintainers_guide

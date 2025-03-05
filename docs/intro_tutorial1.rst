@@ -17,15 +17,16 @@ following four high-level steps:
 Here is an example of the entire workflow, with each step explained in detail in
 subsequent sections:
 
-.. jupyter-execute::
+.. plot::
+    :include-source:
+    :context:
 
-    import numpy as np
     from qiskit import QuantumCircuit, transpile
-    from qiskit.providers.aer import QasmSimulator
+    from qiskit_aer import AerSimulator
     from qiskit.visualization import plot_histogram
 
-    # Use Aer's qasm_simulator
-    simulator = QasmSimulator()
+    # Use Aer's AerSimulator
+    simulator = AerSimulator()
 
     # Create a Quantum Circuit acting on the q register
     circuit = QuantumCircuit(2, 2)
@@ -37,13 +38,13 @@ subsequent sections:
     circuit.cx(0, 1)
 
     # Map the quantum measurement to the classical bits
-    circuit.measure([0,1], [0,1])
+    circuit.measure([0, 1], [0, 1])
 
-    # compile the circuit down to low-level QASM instructions
-    # supported by the backend (not needed for simple circuits)
+    # Compile the circuit for the support instruction set (basis_gates)
+    # and topology (coupling_map) of the backend
     compiled_circuit = transpile(circuit, simulator)
 
-    # Execute the circuit on the qasm simulator
+    # Execute the circuit on the aer simulator
     job = simulator.run(compiled_circuit, shots=1000)
 
     # Grab results from the job
@@ -51,12 +52,14 @@ subsequent sections:
 
     # Returns counts
     counts = result.get_counts(compiled_circuit)
-    print("\nTotal count for 00 and 11 are:",counts)
+    print("\nTotal count for 00 and 11 are:", counts)
 
     # Draw the circuit
-    circuit.draw()
+    circuit.draw("mpl")
 
-.. jupyter-execute::
+.. plot::
+    :include-source:
+    :context: close-figs
 
     # Plot a histogram
     plot_histogram(counts)
@@ -85,16 +88,15 @@ The basic elements needed for your program are imported as follows:
 
 .. code-block:: python
 
-  import numpy as np
   from qiskit import QuantumCircuit
-  from qiskit.providers.aer import QasmSimulator
+  from qiskit_aer import AerSimulator
   from qiskit.visualization import plot_histogram
 
 In more detail, the imports are
 
 - ``QuantumCircuit``: can be thought as the instructions of the quantum system.
   It holds all your quantum operations.
-- ``QasmSimulator``: is the Aer high performance circuit simulator.
+- ``AerSimulator``: is the Aer high performance circuit simulator.
 - ``plot_histogram``: creates histograms.
 
 
@@ -130,11 +132,11 @@ Consider the following three lines of code:
 
     circuit.h(0)
     circuit.cx(0, 1)
-    circuit.measure([0,1], [0,1])
+    circuit.measure([0, 1], [0, 1])
 
 The gates are added to the circuit one-by-one to form the Bell state
 
-.. math:: |\psi\rangle = \left(|00\rangle+|11\rangle\right)/\sqrt{2}.
+.. math:: \lvert\psi\rangle = \left(\lvert00\rangle+\lvert11\rangle\right)/\sqrt{2}.
 
 The code above applies the following gates:
 
@@ -156,9 +158,11 @@ Step 4 : Visualize the Circuit
 You can use :meth:`qiskit.circuit.QuantumCircuit.draw` to view the circuit that you have designed
 in the various forms used in many textbooks and research articles.
 
-.. jupyter-execute::
+.. plot::
+    :include-source:
+    :context: close-figs
 
-    circuit.draw()
+    circuit.draw("mpl")
 
 In this circuit, the qubits are ordered with qubit zero at the top and
 qubit one at the bottom. The circuit is read left-to-right, meaning that gates
@@ -186,27 +190,27 @@ text, mpl, latex, and latex_source.
 Step 5 : Simulate the Experiment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Qiskit Aer is a high performance simulator framework for quantum circuits. It
-provides `several backends <apidoc/providers/aer/aer_backends.html>`__
-to achieve different simulation goals.
+`Qiskit Aer <https://qiskit.org/ecosystem/aer>`_ is a high performance
+simulator framework for quantum circuits. It provides several backends to
+achieve different simulation goals.
 
 If you have issues installing Aer, you can alternatively use the Basic Aer
-provider by replacing `Aer` with `BasicAer`. Basic Aer is included in Qiskit
-Terra.
+provider by replacing `Aer` with `BasicAer`. Basic Aer is included in Qiskit.
 
-.. code-block:: text
+.. code-block:: python
 
-    import numpy as np
     from qiskit import QuantumCircuit, transpile
     from qiskit.providers.basicaer import QasmSimulatorPy
     ...
 
-To simulate this circuit, you will use the ``qasm_simulator``. Each run of this
+To simulate this circuit, you will use the ``AerSimulator``. Each run of this
 circuit will yield either the bit string 00 or 11.
 
-.. jupyter-execute::
+.. plot::
+    :include-source:
+    :context: close-figs
 
-    simulator = QasmSimulator()
+    simulator = AerSimulator()
     compiled_circuit = transpile(circuit, simulator)
     job = simulator.run(compiled_circuit, shots=1000)
     result = job.result()
@@ -232,7 +236,9 @@ Qiskit provides `many visualizations <apidoc/visualization.html>`__,
 
 including the function ``plot_histogram``, to view your results.
 
-.. jupyter-execute::
+.. plot::
+  :include-source:
+  :context: close-figs
 
   plot_histogram(counts)
 
@@ -251,6 +257,6 @@ Next Steps
 
 Now that you have learnt the basics, consider these learning resources:
 
-- :ref:`Qiskit tutorials<tutorials>`
-- `Textbook: Learn Quantum Computing using Qiskit <https://qiskit.org/textbook>`_
+- :ref:`Qiskit tutorials <tutorials>`
+- `Textbook: Learn Quantum Computing using Qiskit <https://qiskit.org/learn/>`_
 - `Video series: Coding with Qiskit <https://www.youtube.com/playlist?list=PLOFEBzvs-Vvp2xg9-POLJhQwtVktlYGbY>`_

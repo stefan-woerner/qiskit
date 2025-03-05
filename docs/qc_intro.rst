@@ -157,17 +157,13 @@ near-time computation, the classical computation occurs on a time scale longer t
 of the quantum computation. Contrast this with **real-time computation**, where the classical
 computation occurs within the decoherence time of the quantum device.
 
-Constructing complex quantum circuits with minimal effort is at the heart of Qiskit.
+Constructing complex quantum circuits with minimal effort is at the heart of Qiskit,
+which supports a rich feature set of operations and can send your circuits to a range of
+:ref:`quantum computers <qc-intro-computers>` or classical simulators.
 With only a few lines of code, it is possible to construct complex circuits like the
-one above
+one above.
 
-.. jupyter-execute::
-   :hide-code:
-
-   from qiskit import *
-
-.. jupyter-execute::
-   :hide-output:
+.. code-block:: python
 
    qr = QuantumRegister(3, 'q')
    cr = ClassicalRegister(2, 'zx_meas')
@@ -182,9 +178,6 @@ one above
    qc.barrier()
    qc.z(2).c_if(cr, 1)
    qc.x(2).c_if(cr, 2)
-
-that support a rich feature set of operations, and can be passed to a range of
-:ref:`quantum computers <qc-intro-computers>` or classical simulators.
 
 .. _qc-intro-computers:
 
@@ -237,5 +230,5 @@ interest:
   physics-based introduction written by some of the founders of quantum computation that makes use
   of the interactive circuit composer.
 
-- `Qiskit textbook <https://qiskit.org/textbook>`_ : A university quantum algorithms/computation
+- `Qiskit textbook <https://qiskit.org/learn/>`_ : A university quantum algorithms/computation
   course supplement based on Qiskit.

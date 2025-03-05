@@ -1,20 +1,25 @@
+qiskit-ibmq-provider[visualization]
+qiskit-aer
 numpy>=1.17
-Sphinx==3.3
-qiskit-sphinx-theme>=1.8.0
-sphinx-autodoc-typehints>=1.8.0
+Sphinx>=6.0
+qiskit-sphinx-theme~=1.14.0
 pylatexenc>=1.4
 sphinx-automodapi
 jupyter
-jupyter-sphinx
-sphinx-panels
-sphinx-gallery
-matplotlib>=2.1,<3.3.0
+sphinx-design
+matplotlib>=3.3.0
 pydot
-ipywidgets>=7.3.
+ipywidgets>=7.3
 pillow>=4.2.1
 seaborn>=0.9.0
 nbsphinx
-cvxpy<1.1.0
-tweedledum>=1.0.0,<2.0.0
+cvxpy
+# Tweedledum is still used by qiskit-tutorials: 07_grover_examples.ipynb. While we won't eagerly
+# error if Tweedledum is missing, the tutorial output will be empty.
+tweedledum>=1.0.0,<2.0.0; python_version < '3.11' and platform_system != "Darwin"
 networkx>=2.3
-sphinx-reredirects
+qiskit-qasm3-import; python_version>'3.7'
+
+# Dev tooling
+black==23.7.0
+isort~=5.11
